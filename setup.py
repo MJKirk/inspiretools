@@ -6,7 +6,8 @@ setup(name='inspiretools',
       author='David M. Straub',
       packages=['inspiretools'],
       install_requires=[
-        "beautifulsoup4"
+        "beautifulsoup4",
+        "lxml"
       ],
       entry_points={
         'console_scripts': [
