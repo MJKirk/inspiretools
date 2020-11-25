@@ -4,6 +4,7 @@ from . import pyinspire
 import logging
 from lxml import etree as et
 import argparse
+import requests
 
 log = logging.getLogger('inspiretools')
 log.setLevel(logging.INFO)
@@ -90,7 +91,8 @@ def texkey2bib(texkeys):
         try:
             log.info('Looking up reference ' + str(i+1)
                          + ' of ' + str(tot))
-            bib = pyinspire.get_text_from_inspire('texkey ' + texkey, 'bibtex')
+            inspire_query_params = {'q': 'texkey=' + texkey, 'format': 'bibtex'}
+            bib = requests.get('https://inspirehep.net/api/literature?', params=inspire_query_params).text
             if bib != '':
                 print(bib)
                 log.info('Success.')
